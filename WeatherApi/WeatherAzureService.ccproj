@@ -37,18 +37,10 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ClientAccessContent\" />
-    <Folder Include="GetDataContent\" />
     <Folder Include="WapiContent\" />
-    <Folder Include="WebRole1Content\" />
-    <Folder Include="WebRole2Content\" />
   </ItemGroup>
   <ItemGroup>
-    <DiagnosticsConfiguration Include="ClientAccessContent\diagnostics.wadcfgx" />
-    <DiagnosticsConfiguration Include="GetDataContent\diagnostics.wadcfgx" />
     <DiagnosticsConfiguration Include="WapiContent\diagnostics.wadcfgx" />
-    <DiagnosticsConfiguration Include="WebRole1Content\diagnostics.wadcfgx" />
-    <DiagnosticsConfiguration Include="WebRole2Content\diagnostics.wadcfgx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wapi\Wapi.csproj">
