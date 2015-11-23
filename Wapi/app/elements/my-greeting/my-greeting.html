@@ -1,0 +1,79 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="my-greeting">
+    <template>
+        <style include="shared-styles"></style>
+        <style>
+            :host {
+                display: block;
+            }
+
+            :host .intro-form{
+                padding: 20px;
+            }
+        </style>
+        <paper-material elevation="1" class="intro-form">
+            <h2 class="page-title"><span>Welcome To Wapi!</span></h2>
+            <span>Please enter a latitude and longitude to begin. This will aggregate the data from multiple apis and store it in an Azure Storage Table.</span>
+            <div>
+                <form id="form" is="iron-form" style="width: 200px;" method="get" action="/api/conditions/search">
+                    <paper-input name="latitude" label="Latitude" required></paper-input>
+                    <paper-input name="longitude" label="Longitude" required></paper-input>
+                </form>
+                <paper-button raised class="search-button" on-click="submitForm">
+                    <iron-icon icon="search"></iron-icon>
+                    Search
+                </paper-button>
+                <span hidden$="[[!errorMessage]]" style="color: red;">[[errorMessage]]</span>
+            </div>
+        </paper-material>
+        <paper-material elevation="1">
+            <h4>Current Data:</h4>
+            <weather-list id="weatherList"></weather-list>
+        </paper-material>
+    </template>
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'my-greeting',
+
+                properties: {
+                    errorMessage: {
+                        type: String,
+                        value: '',
+                        notify: true
+                    }
+                },
+
+                listeners: {
+                    "iron-form-response": "_reloadDataList",
+                    "iron-form-error": "_showError"
+                },
+
+                _reloadDataList: function () {
+                    this.$.weatherList.loadList();
+                    this.$.form.reset();
+                    this.errorMessage = "";
+                },
+
+                _showError: function (e) {
+                    this.errorMessage = e.detail.request.parseResponse().Message;
+                },
+
+                submitForm: function () {
+                    this.$.form.submit();
+                }
+            });
+        })();
+    </script>
+</dom-module>

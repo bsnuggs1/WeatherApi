@@ -1,0 +1,94 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+
+<dom-module id="weather-list">
+    <template>
+        <style include="shared-styles"></style>
+        <style>
+            :host {
+                display: block;
+                padding: 20px;
+            }
+
+            :host paper-card {
+                width: 300px;
+                display: inline-block;
+                margin: 2px;
+            }
+        </style>
+        <iron-ajax id="getCall" auto
+                   url="[[url]]"
+                   handle-as="json"
+                   last-response="{{conditions}}"
+                   debounce-duration="300"></iron-ajax>
+        <iron-ajax id="deleteCall"
+                   url="[[url]]"
+                   method="DELETE"
+                   handle-as="json"
+                   on-response="loadList"></iron-ajax>
+        <template id="list" is="dom-repeat" items="[[conditions]]">
+            <paper-card heading="[[_getCardHeader(item.coordinates.latitude,item.coordinates.longitude)]]" elevation="2" animated-shadow="true">
+                <div class="card-content">
+                    <div>
+                        Temperature: <span>[[_cleanUpDecimals(item.temperature_f)]]</span>
+                    </div>
+                    <div>
+                        Wind Speed: <span>[[item.windSpeed]]</span>
+                    </div>
+                    <div>
+                        Closest Station: <span>[[item.closestStationMiles]]</span>
+                    </div>
+                </div>
+                <div class="card-actions">
+                    <paper-button raised on-click="deleteWeatherData">
+                        <iron-icon icon="delete"></iron-icon>
+                    </paper-button>
+                </div>
+            </paper-card>
+        </template>
+    </template>
+    <script>
+        (function () {
+            'use strict';
+
+            Polymer({
+                is: 'weather-list',
+
+                properties: {
+                    greeting: {
+                        type: String,
+                        value: 'Welcome!',
+                        notify: true
+                    },
+                    url: {
+                        type: String,
+                        value: function () {
+                            return window.location.origin + "/api/conditions";
+                        }
+                    },
+                    conditions: {
+                        type: Object,
+                        notify: true
+                    }
+                },
+                _getCardHeader: function (lat, long) {
+                    return [this._cleanUpDecimals(lat), this._cleanUpDecimals(long)].join(", ");
+                },
+                _cleanUpDecimals: function (value) {
+                    return value.toFixed(2);
+                },
+                loadList: function () {
+                    return this.$.getCall.generateRequest();
+                },
+                deleteWeatherData: function (e) {
+                    var model = e.model,
+                        item = model.item;
+
+                    this.$.deleteCall.params = item.coordinates;
+
+                    return this.$.deleteCall.generateRequest();
+                }
+            });
+        })();
+    </script>
+</dom-module>

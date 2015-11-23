@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="WeatherApi" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
+  <Role name="Wapi">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=portalvhdsshzj2v6wcq12q;AccountKey=rMGv96G9cnbeT8QUzYsekdEQ6UAWNtDVS1sTV8xA730H+mcEcFcly2t1r4FlAZ1hvbDmXXhpYR1eqDWp47pz8w==" />
+      <Setting name="OpenWeatherMapApiKey" value="55e082a6f347673e431817143e8164d7" />
+      <Setting name="WundergroundApiKey" value="92bee5e4113189b3" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

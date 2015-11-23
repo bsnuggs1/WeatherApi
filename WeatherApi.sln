@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "WeatherAzureService", "WeatherApi\WeatherAzureService.ccproj", "{21064A57-3FC2-4E94-9493-CEC123ED314F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wapi", "Wapi\Wapi.csproj", "{08FF38C2-695A-4A95-944C-F802D40EF2B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21064A57-3FC2-4E94-9493-CEC123ED314F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21064A57-3FC2-4E94-9493-CEC123ED314F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21064A57-3FC2-4E94-9493-CEC123ED314F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21064A57-3FC2-4E94-9493-CEC123ED314F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08FF38C2-695A-4A95-944C-F802D40EF2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08FF38C2-695A-4A95-944C-F802D40EF2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08FF38C2-695A-4A95-944C-F802D40EF2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08FF38C2-695A-4A95-944C-F802D40EF2B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
